@@ -1,13 +1,15 @@
 {
-  "functions": {
-    "story.py": {
-      "runtime": "vercel-python@1.0.0"
+  "version": 2,
+  "builds": [
+    {
+      "src": "story.py",
+      "use": "@vercel/python"
     }
-  },
+  ],
   "routes": [
     {
       "src": "/api/story",
-      "dest": "/story.py"
+      "dest": "story.py"
     }
   ]
 }
