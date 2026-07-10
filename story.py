@@ -16,17 +16,18 @@ def generate_story():
     # Configuration du modèle
     model = genai.GenerativeModel(model_name='models/gemini-3.5-flash')
     
-    # Nouveau prompt optimisé pour des histoires plus travaillées
+    # Prompt mis à jour pour un langage simple et structuré
     prompt = f"""
-    Écris une histoire courte pour enfants sur le thème : {topic}.
+    Écris une histoire pour un enfant de 5 ans sur le thème : {topic}.
     
-    Instructions de style :
-    - Structure l'histoire en exactement 4 paragraphes bien distincts.
-    - Utilise un vocabulaire riche, des descriptions sensorielles (couleurs, odeurs, sons) et une narration immersive.
-    - Ton : Doux, bienveillant et inspirant.
-    - Évite les expressions clichés ou trop enfantines.
-    - Termine l'histoire par une réflexion poétique sur la morale ou la beauté de cette aventure.
-    - Ajoute quelques émojis pertinents pour agrémenter le texte.
+    Instructions strictes :
+    - Langage : Utilise des mots simples et concrets. Phrases courtes et rythmées.
+    - Structure : 
+        1. Intro : Présente le héros et son désir.
+        2. Histoire : Une aventure avec une petite difficulté résolue grâce à l'entraide ou la réflexion.
+        3. Conclusion : Une morale bienveillante en une phrase.
+    - Contrainte : PAS de mots compliqués. Pas de style trop littéraire. C'est une histoire pour être comprise par un tout-petit.
+    - Pas d'émojis dans le texte (pour faciliter la lecture TTS).
     """
     
     try:
