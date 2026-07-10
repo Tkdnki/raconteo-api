@@ -13,7 +13,7 @@ def generate_story():
     topic = data.get('topic', 'une aventure magique')
     
     # Configuration du modèle
-    model = genai.GenerativeModel(model_name='models/gemini-1.5-flash')
+    model = genai.GenerativeModel(model_name='gemini-pro')
     
     # Prompt optimisé pour les enfants
     prompt = f"""
