@@ -13,7 +13,7 @@ def generate_story():
         topic = data.get('topic', 'une aventure magique')
         api_key = os.environ.get("GEMINI_API_KEY")
         
-        url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key={api_key}"
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key={api_key}"
         
         payload = {
             "contents": [{"parts": [{"text": f"Raconte une histoire complète et immersive pour un enfant de 5 ans sur : {topic}. Structure : Intro, Aventure, Morale. Minimum 250 mots. Pas d'émojis."}]}],
