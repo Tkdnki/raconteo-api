@@ -16,19 +16,20 @@ def generate_story():
     # Configuration du modèle
     model = genai.GenerativeModel(model_name='models/gemini-3.5-flash')
     
-    # Prompt mis à jour pour un langage simple et structuré
+    # Prompt optimisé pour la créativité, la longueur et le sens
     prompt = f"""
-    Écris une histoire pour un enfant de 5 ans sur le thème : {topic}.
+    Écris une histoire longue et immersive pour un enfant de 5 ans sur le thème : {topic}.
     
-    Instructions strictes :
-    - Langage : Utilise des mots simples et concrets. Phrases courtes et rythmées.
-    - Structure : 
-        1. Intro : Présente le héros et son désir.
-        2. Histoire : Une aventure avec une petite difficulté résolue grâce à l'entraide ou la réflexion.
-        3. Conclusion : Une morale bienveillante en une phrase.
-    - Contrainte : PAS de mots compliqués. Pas de style trop littéraire. C'est une histoire pour être comprise par un tout-petit.
-    - Pas d'émojis dans le texte (pour faciliter la lecture TTS).
-    - INTERDICTION : Ne commence JAMAIS l'histoire par "Voici", "Il était une fois" ou "Voici l'histoire de". Commence directement par l'action ou le personnage.
+    Instructions strictes pour la narration :
+    - Commence directement par une action ou une description poétique du lieu.
+    - Ne présente jamais le personnage par une phrase basique du type "Nom est un Adjectif Nom". 
+    - Exemple de style attendu : "Sous les rayons de la lune, le vent murmurait des secrets à nos oreilles."
+    - La narration doit être riche, détaillée et captivante. Développe l'intrigue avec des péripéties intéressantes.
+    - Sois créatif, surprenant et immersif. Évite les structures scolaires trop prévisibles.
+    - Intègre une morale profonde et bienveillante à la fin, amenée naturellement par l'histoire.
+    - Langage : Mots simples et concrets, mais avec un vocabulaire évocateur.
+    - Contrainte technique : Pas d'émojis dans le texte.
+    - Longueur : L'histoire doit être substantielle et bien développée.
     """
     
     try:
