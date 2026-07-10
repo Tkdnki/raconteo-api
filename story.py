@@ -28,6 +28,7 @@ def generate_story():
         3. Conclusion : Une morale bienveillante en une phrase.
     - Contrainte : PAS de mots compliqués. Pas de style trop littéraire. C'est une histoire pour être comprise par un tout-petit.
     - Pas d'émojis dans le texte (pour faciliter la lecture TTS).
+    - INTERDICTION : Ne commence JAMAIS l'histoire par "Voici", "Il était une fois" ou "Voici l'histoire de". Commence directement par l'action ou le personnage.
     """
     
     try:
