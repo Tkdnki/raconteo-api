@@ -29,7 +29,7 @@ def generate_story():
         """
         
         response = client.models.generate_content(
-            model='gemini-1.5-flash-latest',
+            model='gemini-1.5-flash-001',
             contents=prompt
         )
         
