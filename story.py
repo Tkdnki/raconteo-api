@@ -3,29 +3,13 @@ import google.generativeai as genai
 import os
 
 app = Flask(__name__)
-
-# Configurez votre clé API via une variable d'environnement sur Vercel
 genai.configure(api_key=os.environ.get("GEMINI_API_KEY"))
 
 @app.route('/api/story', methods=['POST'])
-def generate_story():
-    data = request.json
-    topic = data.get('topic', 'une aventure magique')
-    
-    # Configuration du modèle
-    model = genai.GenerativeModel(model_name='gemini-1.5-flash-latest')
-    
-    # Prompt optimisé pour les enfants
-    prompt = f"""
-    Écris une histoire courte et bienveillante pour enfants en 3 ou 4 paragraphes sur le thème suivant : {topic}.
-    Utilise un ton joyeux, ajoute quelques émojis et assure-toi que l'histoire soit captivante.
-    """
-    
-    try:
-        response = model.generate_content(prompt)
-        return jsonify({"story": response.text})
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
+def debug_models():
+    # Cette ligne liste tous les modèles disponibles pour votre clé
+    models = [m.name for m in genai.list_models() if 'generateContent' in m.supported_generation_methods]
+    return jsonify({"available_models": models})
 
 if __name__ == '__main__':
     app.run()
