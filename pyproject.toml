@@ -1,2 +1,10 @@
+[project]
+name = "raconteo-api"
+version = "0.1.0"
+dependencies = [
+    "flask",
+    "requests"
+]
+
 [tool.vercel]
 entrypoint = "api.story:app"
