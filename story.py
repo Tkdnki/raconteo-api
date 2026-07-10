@@ -13,13 +13,20 @@ def generate_story():
     data = request.json
     topic = data.get('topic', 'une aventure magique')
     
-    # Configuration du modèle (vérifié dans la liste de votre compte)
+    # Configuration du modèle
     model = genai.GenerativeModel(model_name='models/gemini-3.5-flash')
     
-    # Prompt optimisé pour les enfants
+    # Nouveau prompt optimisé pour des histoires plus travaillées
     prompt = f"""
-    Écris une histoire courte et bienveillante pour enfants en 3 ou 4 paragraphes sur le thème suivant : {topic}.
-    Utilise un ton joyeux, ajoute quelques émojis et assure-toi que l'histoire soit captivante.
+    Écris une histoire courte pour enfants sur le thème : {topic}.
+    
+    Instructions de style :
+    - Structure l'histoire en exactement 4 paragraphes bien distincts.
+    - Utilise un vocabulaire riche, des descriptions sensorielles (couleurs, odeurs, sons) et une narration immersive.
+    - Ton : Doux, bienveillant et inspirant.
+    - Évite les expressions clichés ou trop enfantines.
+    - Termine l'histoire par une réflexion poétique sur la morale ou la beauté de cette aventure.
+    - Ajoute quelques émojis pertinents pour agrémenter le texte.
     """
     
     try:
