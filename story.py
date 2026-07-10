@@ -1,39 +1,31 @@
 from flask import Flask, request, jsonify
 import os
-from google import genai
+import requests
 
 app = Flask(__name__)
-
-# Le client utilise automatiquement la variable d'environnement GEMINI_API_KEY
-client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
 
 @app.route('/api/story', methods=['POST'])
 def generate_story():
     try:
         data = request.get_json(silent=True) or {}
         topic = data.get('topic', 'une aventure magique')
+        api_key = os.environ.get("GEMINI_API_KEY")
         
-        # Un prompt ultra-précis pour forcer la longueur
-        prompt = f"""
-        Raconte une histoire complète, immersive et détaillée pour un enfant de 5 ans sur le thème suivant : {topic}.
+        # Appel direct à l'API Google via REST (plus robuste)
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={api_key}"
         
-        Structure obligatoire :
-        1. Une introduction poétique posant le décor.
-        2. Une aventure avec au moins trois péripéties différentes.
-        3. Une conclusion chaleureuse avec une morale constructive.
+        payload = {
+            "contents": [{
+                "parts": [{"text": f"Raconte une histoire complète d'au moins 250 mots sur : {topic}. Structure : Intro, Aventure, Morale. Pas d'émojis."}]
+            }]
+        }
         
-        Contraintes :
-        - Fais environ 250 mots minimum.
-        - Utilise un langage vivant, imagé et sans émojis.
-        - Ne répète pas le sujet mot pour mot, intègre-le naturellement.
-        """
+        response = requests.post(url, json=payload)
+        response_data = response.json()
         
-        response = client.models.generate_content(
-            model='gemini-1.5-flash-001',
-            contents=prompt
-        )
-        
-        return jsonify({"story": response.text})
+        # Extraction du texte
+        story = response_data['candidates'][0]['content']['parts'][0]['text']
+        return jsonify({"story": story})
         
     except Exception as e:
         return jsonify({"error": str(e)}), 500
